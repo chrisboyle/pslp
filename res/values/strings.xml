@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="app_name">
+		<i>Locale</i>
+		Power Source Plugin
+	</string>
+	<string name="plugin_name">Power source</string>
+	<string name="help_url">http://chris.boyle.name/projects/pslp</string>
+	<string name="not">not</string>
+	<string-array name="sources">
+		<item>battery</item>
+		<item>AC/dock/car charger/...</item>
+		<item>USB</item>
+	</string-array>
+</resources>

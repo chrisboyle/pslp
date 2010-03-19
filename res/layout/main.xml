@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res/edu.mit.locale"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_margin="5dp"
+        android:id="@+id/frame"
+    >
+    	<CheckBox
+    		android:id="@+id/not"
+    		android:layout_width="fill_parent"
+    		android:layout_height="wrap_content" android:text="@string/not" android:textColor="@android:color/black"/>
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:drawSelectorOnTop="true"
+            android:prompt="@string/plugin_name"/>
+    </LinearLayout>
+</LinearLayout>
