@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:versionCode="2" android:versionName="2" package="name.boyle.chris.powersource">
+    android:versionCode="3" android:versionName="3" package="name.boyle.chris.powersource">
     <!--
         Locale requires Android 1.5, but targets a newer SDK so that it doesn't run in compatibility
         mode. Setting the target will allow high resolution graphics, for example. Note that this
@@ -10,7 +10,7 @@
     -->
     <uses-sdk
         android:minSdkVersion="6"
-        android:targetSdkVersion="6" />
+        android:targetSdkVersion="8" />
     <supports-screens
         android:smallScreens="true"
         android:normalScreens="true"

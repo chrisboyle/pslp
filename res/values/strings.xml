@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 	<string name="app_name">
-		<i>Locale</i>
+		Locale
 		Power Source Plugin
 	</string>
 	<string name="plugin_name">Power source</string>
