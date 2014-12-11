@@ -8,7 +8,6 @@ import android.content.IntentFilter;
 import android.os.BatteryManager;
 import android.os.IBinder;
 import android.util.Log;
-import android.widget.Toast;
 
 /**
  * {@code Service} for monitoring the {@code REGISTERED_RECEIVER_ONLY} {@code Intent}s {@link Intent#ACTION_SCREEN_ON} and
@@ -91,8 +90,7 @@ public final class BackgroundService extends Service
 				if (! Intent.ACTION_BATTERY_CHANGED.equals(action)) return;
 				
 				powerSource = intent.getIntExtra(BatteryManager.EXTRA_PLUGGED, -1);
-                Toast.makeText(getBaseContext(),String.valueOf(powerSource),Toast.LENGTH_LONG);
-
+                
                 if (powerSource < 0) return;
 
 				/*

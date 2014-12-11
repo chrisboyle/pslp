@@ -10,7 +10,6 @@ import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import com.twofortyfouram.SharedResources;
 
@@ -91,7 +90,7 @@ public final class EditActivity extends Activity
                 } else
 				if (source >= 0) spinner.setSelection(source);
 				notCB.setChecked(forwardedBundle.getBoolean(Constants.BUNDLE_EXTRA_NOT, false));
-                Toast.makeText(this.getBaseContext(), String.valueOf(source),Toast.LENGTH_LONG).show();
+                
             }
 		}
 		/*
