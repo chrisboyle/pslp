@@ -8,8 +8,9 @@
 	<string name="help_url">http://chris.boyle.name/projects/pslp</string>
 	<string name="not">not</string>
 	<string-array name="sources">
-		<item>battery</item>
-		<item>AC/dock/car charger/...</item>
+		<item>Battery</item>
+		<item>AC</item>
 		<item>USB</item>
+        <item>Wireless</item>
 	</string-array>
 </resources>
