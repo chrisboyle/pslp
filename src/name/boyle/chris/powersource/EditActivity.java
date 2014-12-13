@@ -84,13 +84,9 @@ public final class EditActivity extends Activity
 			if (forwardedBundle != null)
 			{
 				int source = forwardedBundle.getInt(Constants.BUNDLE_EXTRA_POWER_SOURCE, -1);
-                if (source == 3) {
-                    spinner.setSelection(source);
-                    source++;
-                } else
+                if (source == 4) source--;
 				if (source >= 0) spinner.setSelection(source);
 				notCB.setChecked(forwardedBundle.getBoolean(Constants.BUNDLE_EXTRA_NOT, false));
-                
             }
 		}
 		/*
