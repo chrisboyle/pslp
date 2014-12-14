@@ -7,9 +7,9 @@
 	<string name="plugin_name">Power source</string>
 	<string name="not">not</string>
 	<string-array name="sources">
-		<item>Battery</item>
-		<item>AC</item>
+		<item>battery</item>
+		<item>AC/dock/car charger&#8230;</item>
 		<item>USB</item>
-        <item>Wireless</item>
+		<item>wireless charging</item>
 	</string-array>
 </resources>

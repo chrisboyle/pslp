@@ -56,7 +56,7 @@ public final class BackgroundService extends Service
 	 * <li>0 for unplugged</li>
 	 * <li>BATTERY_PLUGGED_AC (1)</li>
 	 * <li>BATTERY_PLUGGED_USB (2)</li>
-     * <li>BATTERY_PLUGGED_WIRELESS (4)</li>
+	 * <li>BATTERY_PLUGGED_WIRELESS (4)</li>
 	 * </ol>
 	 */
 	private static int powerSource = -1;
@@ -90,8 +90,7 @@ public final class BackgroundService extends Service
 				if (! Intent.ACTION_BATTERY_CHANGED.equals(action)) return;
 				
 				powerSource = intent.getIntExtra(BatteryManager.EXTRA_PLUGGED, -1);
-                
-                if (powerSource < 0) return;
+				if (powerSource < 0) return;
 
 				/*
 				 * Ask Locale to re-query our condition instances. Note: this plug-in does not keep track of what types of
