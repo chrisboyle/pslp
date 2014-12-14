@@ -5,7 +5,6 @@
 		Power Source Plugin
 	</string>
 	<string name="plugin_name">Power source</string>
-	<string name="help_url">http://chris.boyle.name/projects/pslp</string>
 	<string name="not">not</string>
 	<string-array name="sources">
 		<item>battery</item>
