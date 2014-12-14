@@ -1,41 +1,16 @@
 package name.boyle.chris.powersource;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
-import android.widget.LinearLayout;
 import android.widget.Spinner;
-
-import com.twofortyfouram.SharedResources;
 
 /**
  * This is the "Edit" activity for a <i>Locale</i> plug-in.
  */
-public final class EditActivity extends Activity
+public final class EditActivity extends AbstractPluginActivity
 {
-
-	/**
-	 * Menu ID of the save item.
-	 */
-	private static final int MENU_SAVE = 1;
-
-	/**
-	 * Menu ID of the don't save item.
-	 */
-	private static final int MENU_DONT_SAVE = 2;
-
-	/**
-	 * Flag boolean that can only be set to true via the "Don't Save" menu item in {@link #onMenuItemSelected(int, MenuItem)}. If
-	 * true, then this {@code Activity} should return {@link Activity#RESULT_CANCELED} in {@link #finish()}.
-	 * <p>
-	 * There is no need to save/restore this field's state when the {@code Activity} is paused.
-	 */
-	private boolean isCancelled;
 
 	/**
 	 * {@inheritDoc}
@@ -46,19 +21,6 @@ public final class EditActivity extends Activity
 		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.main);
-
-		/*
-		 * Locale guarantees that the breadcrumb string will be present, but checking for null anyway makes your Activity more
-		 * robust and re-usable
-		 */
-		final String breadcrumbString = getIntent().getStringExtra(com.twofortyfouram.Intent.EXTRA_STRING_BREADCRUMB);
-		if (breadcrumbString != null)
-			setTitle(String.format("%s%s%s", breadcrumbString, com.twofortyfouram.Intent.BREADCRUMB_SEPARATOR, getString(R.string.plugin_name))); //$NON-NLS-1$
-
-		/*
-		 * Load the Locale background frame from Locale
-		 */
-		((LinearLayout) findViewById(R.id.frame)).setBackgroundDrawable(SharedResources.getDrawableResource(getPackageManager(), SharedResources.DRAWABLE_LOCALE_BORDER));
 
 		/*
 		 * populate the spinner
@@ -76,7 +38,7 @@ public final class EditActivity extends Activity
 		 */
 		if (savedInstanceState == null)
 		{
-			final Bundle forwardedBundle = getIntent().getBundleExtra(com.twofortyfouram.Intent.EXTRA_BUNDLE);
+			final Bundle forwardedBundle = getIntent().getBundleExtra(com.twofortyfouram.locale.Intent.EXTRA_BUNDLE);
 
 			/*
 			 * the forwardedBundle would be null if this was a new condition
@@ -100,7 +62,7 @@ public final class EditActivity extends Activity
 	@Override
 	public void finish()
 	{
-		if (isCancelled)
+		if (isCanceled())
 			setResult(RESULT_CANCELED);
 		else
 		{
@@ -125,8 +87,8 @@ public final class EditActivity extends Activity
 			storeAndForwardExtras.putInt(Constants.BUNDLE_EXTRA_POWER_SOURCE, source);
 			String blurb = (invert ? getString(R.string.not)+" " : "")
 					+ getResources().getStringArray(R.array.sources)[source];
-			returnIntent.putExtra(com.twofortyfouram.Intent.EXTRA_STRING_BLURB, blurb);
-			returnIntent.putExtra(com.twofortyfouram.Intent.EXTRA_BUNDLE, storeAndForwardExtras);
+			returnIntent.putExtra(com.twofortyfouram.locale.Intent.EXTRA_STRING_BLURB, blurb);
+			returnIntent.putExtra(com.twofortyfouram.locale.Intent.EXTRA_BUNDLE, storeAndForwardExtras);
 
 			setResult(RESULT_OK, returnIntent);
 		}
@@ -134,59 +96,4 @@ public final class EditActivity extends Activity
 		super.finish();
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public boolean onCreateOptionsMenu(final Menu menu)
-	{
-		super.onCreateOptionsMenu(menu);
-
-		final PackageManager manager = getPackageManager();
-
-		// TODO: fill in your help URL here
-		final Intent helpIntent = new Intent(com.twofortyfouram.Intent.ACTION_HELP);
-		helpIntent.putExtra(com.twofortyfouram.Intent.EXTRA_STRING_HELP_URL, getString(R.string.help_url));
-
-		// Note: title set in onCreate
-		helpIntent.putExtra(com.twofortyfouram.Intent.EXTRA_STRING_BREADCRUMB, getTitle());
-
-		/*
-		 * We are dynamically loading resources from Locale's APK. This will only work if Locale is actually installed
-		 */
-		menu.add(SharedResources.getTextResource(manager, SharedResources.STRING_MENU_HELP))
-			.setIcon(SharedResources.getDrawableResource(manager, SharedResources.DRAWABLE_MENU_HELP)).setIntent(helpIntent);
-
-		menu.add(0, MENU_DONT_SAVE, 0, SharedResources.getTextResource(manager, SharedResources.STRING_MENU_DONTSAVE))
-			.setIcon(SharedResources.getDrawableResource(manager, SharedResources.DRAWABLE_MENU_DONTSAVE)).getItemId();
-
-		menu.add(0, MENU_SAVE, 0, SharedResources.getTextResource(manager, SharedResources.STRING_MENU_SAVE))
-			.setIcon(SharedResources.getDrawableResource(manager, SharedResources.DRAWABLE_MENU_SAVE)).getItemId();
-
-		return true;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public boolean onMenuItemSelected(final int featureId, final MenuItem item)
-	{
-		switch (item.getItemId())
-		{
-			case MENU_SAVE:
-			{
-				finish();
-				return true;
-			}
-			case MENU_DONT_SAVE:
-			{
-				isCancelled = true;
-				finish();
-				return true;
-			}
-		}
-
-		return super.onOptionsItemSelected(item);
-	}
 }

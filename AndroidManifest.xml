@@ -1,34 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:versionCode="3" android:versionName="3" package="name.boyle.chris.powersource">
-    <!--
-        Locale requires Android 1.5, but targets a newer SDK so that it doesn't run in compatibility
-        mode. Setting the target will allow high resolution graphics, for example. Note that this
-        requires building with a newer version of the SDK, so be careful that you don't use APIs
-        that don't exist in older versions.
-    -->
+    android:versionCode="4" android:versionName="4" package="name.boyle.chris.powersource" xmlns:tools="http://schemas.android.com/tools">
     <uses-sdk
-        android:minSdkVersion="6"
-        android:targetSdkVersion="8" />
+        android:minSdkVersion="8"
+        android:targetSdkVersion="21" />
     <supports-screens
         android:smallScreens="true"
         android:normalScreens="true"
-        android:largeScreens="true" />
+        android:largeScreens="true"
+        android:xlargeScreens="true"
+        android:anyDensity="true"
+        tools:ignore="UnusedAttribute"/>
     <application
         android:label="@string/app_name"
         android:icon="@drawable/icon_app"
+        android:allowBackup="true"
     >
-        <!--
-            This Activity comes from the Locale platform JAR. If your app does not stand alone (e.g.
-            it is only a plug-in for Locale), including this in your manifest will help when users
-            tap the "Open" button in the Android Market.
-        -->
         <activity
-            android:name="com.twofortyfouram.MarketActivity"
-            android:label="@string/app_name"
-            android:icon="@drawable/icon_app"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:name=".InfoActivity"
+            android:exported="true"
+            tools:ignore="ExportedActivity"
         >
             <intent-filter>
                 <action
@@ -44,8 +36,11 @@
         -->
         <activity
             android:name=".EditActivity"
+            android:exported="true"
+            tools:ignore="ExportedActivity"
             android:label="@string/plugin_name"
             android:icon="@drawable/icon_plugin"
+            android:theme="@style/Theme.Locale.Dark"
         >
             <!-- this Intent filter allows the plug-in to be discovered by Locale -->
             <intent-filter>
@@ -56,6 +51,8 @@
         <!-- This is the "query" BroadcastReceiver -->
         <receiver
             android:name=".QueryReceiver"
+            android:exported="true"
+            tools:ignore="ExportedReceiver"
         >
             <!-- this Intent filter allows the plug-in to be queried -->
             <intent-filter>

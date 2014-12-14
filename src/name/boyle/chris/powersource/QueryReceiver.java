@@ -25,21 +25,21 @@ public final class QueryReceiver extends BroadcastReceiver
 		 * empty or otherwise malformed Intent. And since Locale applies settings in the background, you don't want your plug-in
 		 * to crash.
 		 */
-		if (!com.twofortyfouram.Intent.ACTION_QUERY_CONDITION.equals(intent.getAction()))
+		if (!com.twofortyfouram.locale.Intent.ACTION_QUERY_CONDITION.equals(intent.getAction()))
 		{
-			Log.w(Constants.TAG, "Received unexpected Intent action"); //$NON-NLS-1$
+			Log.w(Constants.LOG_TAG, "Received unexpected Intent action"); //$NON-NLS-1$
 			return;
 		}
 
-		final Bundle bundle = intent.getBundleExtra(com.twofortyfouram.Intent.EXTRA_BUNDLE);
+		final Bundle bundle = intent.getBundleExtra(com.twofortyfouram.locale.Intent.EXTRA_BUNDLE);
 		if (bundle == null)
 		{
-			Log.e("DisplayCondition", "Received null BUNDLE"); //$NON-NLS-1$ //$NON-NLS-2$
+			Log.e(Constants.LOG_TAG, "Received null BUNDLE"); //$NON-NLS-1$ //$NON-NLS-2$
 			return;
 		}
 		if (!bundle.containsKey(Constants.BUNDLE_EXTRA_POWER_SOURCE))
 		{
-			Log.e(Constants.TAG, "Missing power source param in Bundle"); //$NON-NLS-1$
+			Log.e(Constants.LOG_TAG, "Missing power source param in Bundle"); //$NON-NLS-1$
 			return;
 		}
 		boolean invert = bundle.getBoolean(Constants.BUNDLE_EXTRA_NOT, false);
@@ -57,12 +57,12 @@ public final class QueryReceiver extends BroadcastReceiver
 
 		final int state = BackgroundService.getPowerSource(context);
 		if (state < 0)
-			setResultCode(com.twofortyfouram.Intent.RESULT_CONDITION_UNKNOWN);
+			setResultCode(com.twofortyfouram.locale.Intent.RESULT_CONDITION_UNKNOWN);
 		else if (!invert && state == bundle.getInt(Constants.BUNDLE_EXTRA_POWER_SOURCE))
-			setResultCode(com.twofortyfouram.Intent.RESULT_CONDITION_SATISFIED);
+			setResultCode(com.twofortyfouram.locale.Intent.RESULT_CONDITION_SATISFIED);
 		else if (invert && state != bundle.getInt(Constants.BUNDLE_EXTRA_POWER_SOURCE))
-			setResultCode(com.twofortyfouram.Intent.RESULT_CONDITION_SATISFIED);
+			setResultCode(com.twofortyfouram.locale.Intent.RESULT_CONDITION_SATISFIED);
 		else
-			setResultCode(com.twofortyfouram.Intent.RESULT_CONDITION_UNSATISFIED);
+			setResultCode(com.twofortyfouram.locale.Intent.RESULT_CONDITION_UNSATISFIED);
 	}
 }

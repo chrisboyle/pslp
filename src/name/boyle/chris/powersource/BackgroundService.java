@@ -30,7 +30,7 @@ public final class BackgroundService extends Service
 	 * {@code Intent} to ask <i>Locale</i> to re-query our conditions. Cached here so that we only have to create this object
 	 * once.
 	 */
-	private static final Intent REQUEST_REQUERY = new Intent(com.twofortyfouram.Intent.ACTION_REQUEST_QUERY);
+	private static final Intent REQUEST_REQUERY = new Intent(com.twofortyfouram.locale.Intent.ACTION_REQUEST_QUERY);
 
 	static
 	{
@@ -38,7 +38,7 @@ public final class BackgroundService extends Service
 		 * The Activity name must be present as an extra in this Intent, so that Locale will know who needs updating. This intent
 		 * will be ignored unless the extra is present.
 		 */
-		REQUEST_REQUERY.putExtra(com.twofortyfouram.Intent.EXTRA_ACTIVITY, EditActivity.class.getName());
+		REQUEST_REQUERY.putExtra(com.twofortyfouram.locale.Intent.EXTRA_ACTIVITY, EditActivity.class.getName());
 	}
 
 	/**
@@ -85,7 +85,7 @@ public final class BackgroundService extends Service
 			{
 				final String action = intent.getAction();
 
-				Log.v(Constants.TAG, String.format("Received Intent action %s", action)); //$NON-NLS-1$ //$NON-NLS-2$
+				Log.v(Constants.LOG_TAG, String.format("Received Intent action %s", action)); //$NON-NLS-1$ //$NON-NLS-2$
 				if (! Intent.ACTION_BATTERY_CHANGED.equals(action)) return;
 				
 				powerSource = intent.getIntExtra(BatteryManager.EXTRA_PLUGGED, -1);
