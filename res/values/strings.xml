@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
-	<string name="app_name">
-		Locale
-		Power Source Plugin
-	</string>
-	<string name="plugin_name">Power source</string>
-	<string name="not">not</string>
-	<string-array name="sources">
+<resources xmlns:tools="http://schemas.android.com/tools">
+	<string name="app_name" tools:ignore="MissingTranslation">Locale Power Source Plugin</string>
+	<string name="plugin_name" tools:ignore="MissingTranslation">Power source</string>
+	<string name="not" tools:ignore="MissingTranslation">not</string>
+	<string-array name="sources" tools:ignore="MissingTranslation">
 		<item>battery</item>
 		<item>AC/dock/car charger&#8230;</item>
 		<item>USB</item>
