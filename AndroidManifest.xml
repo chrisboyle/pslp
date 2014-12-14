@@ -14,7 +14,7 @@
         tools:ignore="UnusedAttribute"/>
     <application
         android:label="@string/app_name"
-        android:icon="@drawable/icon_app"
+        android:icon="@drawable/icon"
         android:allowBackup="true"
     >
         <activity
@@ -39,7 +39,7 @@
             android:exported="true"
             tools:ignore="ExportedActivity"
             android:label="@string/plugin_name"
-            android:icon="@drawable/icon_plugin"
+            android:icon="@drawable/icon"
             android:theme="@style/Theme.Locale.Dark"
         >
             <!-- this Intent filter allows the plug-in to be discovered by Locale -->
